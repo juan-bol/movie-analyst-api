@@ -5,7 +5,7 @@ var mariadb = require('mariadb/callback');
 var connection = mariadb.createConnection({
  host     : process.env.DB_HOST || '192.168.100.13',
  user     : process.env.DB_USER || 'root',
- password : process.env.DB_PASS || ''//,
+ password : process.env.DB_PASS || 'holi'//,
  //database : process.env.DB_NAME || 'movie_db'
 });
 
