@@ -1,6 +1,6 @@
-CREATE TABLE movie_db.publication (name VARCHAR(255) PRIMARY KEY, avatar VARCHAR(21));
-CREATE TABLE movie_db.reviewer (name VARCHAR(255) PRIMARY KEY, avatar VARCHAR(255), publication VARCHAR(255), FOREIGN KEY (publication) REFERENCES publication(name) ON DELETE CASCADE);
-CREATE TABLE movie_db.moviereview (title VARCHAR(255) PRIMARY KEY, `release` VARCHAR(255), score INTEGER, reviewer VARCHAR(255), FOREIGN KEY (reviewer) REFERENCES reviewer(name) ON DELETE CASCADE);
+CREATE TABLE movie_db.publication (name VARCHAR(127) PRIMARY KEY, avatar VARCHAR(21));
+CREATE TABLE movie_db.reviewer (name VARCHAR(127) PRIMARY KEY, avatar VARCHAR(127), publication VARCHAR(127), FOREIGN KEY (publication) REFERENCES publication(name) ON DELETE CASCADE);
+CREATE TABLE movie_db.moviereview (title VARCHAR(127) PRIMARY KEY, `release` VARCHAR(127), score INTEGER, reviewer VARCHAR(127), FOREIGN KEY (reviewer) REFERENCES reviewer(name) ON DELETE CASCADE);
 
 INSERT INTO movie_db.publication (name, avatar) VALUES ('The Daily Reviewer', 'glyphicon-eye-open');
 INSERT INTO movie_db.publication (name, avatar) VALUES ('International Movie Critic', 'glyphicon-fire');
