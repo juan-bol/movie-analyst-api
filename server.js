@@ -5,9 +5,7 @@ const execSync = require('child_process').execSync;
 var mariadb = require('mariadb/callback');
 
 const fs = require('fs');
-let fileContent = fs.readFileSync('.secrets', 'utf-8');
-console.log(fileContent);
-
+let fileContent = fs.readFileSync('.secrets', 'utf-8').trim();
 
 var connection = mariadb.createConnection({
  host     : process.env.DB_HOST || '192.168.100.13',
