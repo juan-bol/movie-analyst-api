@@ -1,6 +1,7 @@
 // Get our dependencies
 var express = require('express');
 var app = express();
+const execSync = require('child_process').execSync;
 var mariadb = require('mariadb/callback');
 var connection = mariadb.createConnection({
  host     : process.env.DB_HOST || '192.168.100.13',
@@ -62,6 +63,11 @@ function getPendings(callback) {
   );    
 }
 
+function getIp() {   
+  stdout = execSync("ifconfig eth1 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*'", { encoding: 'utf-8' });  // the default is 'buffer'
+  return stdout.split('\n')[0].split(' ')[1];
+
+}
 
 //Testing endpoint
 app.get('/', function (req, res) {
@@ -98,6 +104,12 @@ app.get('/pendings', function(req, res){
     if (err) throw err;
     res.json(result);
   })})
+
+
+app.get('/ip', function (req, res) {
+  var response = [{ ip: getIp() }]
+  res.json(response);
+})
 
 console.log("server listening through port: "+process.env.PORT);
 // Launch our API Server and have it listen on port 3000.
