@@ -30,6 +30,7 @@
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "should": "^11.2.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "mariadb": "2.5.2"
   }
 }
