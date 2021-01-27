@@ -1,9 +1,14 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Checkout SCM') {
             steps {
-                echo 'Hello world!' 
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm install'
             }
         }
     }
