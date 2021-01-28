@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Hello world!"
+                sh 'docker build -t rampup ./movie-analyst-api'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'docker run --rm rampup npm test'
             }
         }
     }
