@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                // dir("\$(pwd)"){
                     checkout scm
-                // }
             }
         }
         stage('Build') {
