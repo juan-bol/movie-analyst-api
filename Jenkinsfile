@@ -1,8 +1,18 @@
 pipeline {
     agent any 
     stages {
+        stage('Checking dir') {            
+            steps { 
+                sh "pwd"
+                dir('$(pwd)'){
+                    sh "pwd"
+                }
+                checkout scm
+                sh "ls"
+            }
+        }
         stage('Checkout SCM') {
-            steps {
+            steps { 
                 dir('$(pwd)'){
                     checkout scm
                 }
