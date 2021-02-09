@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Pack') {
             steps {
-                sh 'docker run -v ./data: --rm rampup npm pack'
+                sh 'docker run -v ./:data --rm rampup npm pack'
                 sh 'ls -l'
             }
         }
