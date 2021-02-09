@@ -2,15 +2,13 @@ pipeline {
     agent any 
     stages {
         stage('Checkout SCM') {
-            steps {
-                dir("\$(pwd)"){
-                    checkout scm
-                }
+            steps { 
+                checkout scm
             }
         }
         stage('Build') {
             steps {
-                sh 'docker build -t rampup \$(pwd)/movie-analyst-api'
+                sh 'docker build -t rampup .'
             }
         }
         stage('Test') {
