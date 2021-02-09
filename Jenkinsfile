@@ -16,5 +16,11 @@ pipeline {
                 sh 'docker run --rm rampup npm test'
             }
         }
+        stage('Pack') {
+            steps {
+                sh 'docker run -v \$(pwd)/:/data --rm rampup npm pack'
+                sh 'ls -l'
+            }
+        }
     }
 }
