@@ -25,7 +25,7 @@ pipeline {
         stage('Remote SSH') {
             steps {
                 sshagent(['jenkins-key']) {
-                    sh "ssh ec2-user@13.52.216.181 'pwd'"
+                    sh "ssh ec2-user@10.1.13.173 \'pwd\'"
                 } 
             }
         }
