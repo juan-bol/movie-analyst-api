@@ -23,8 +23,8 @@ pipeline {
             }
         }
         def remote = [:]
-        remote.name = 'ip-10-1-15-164'
-        remote.host = 'ip-10-1-15-164.us-west-1.compute.internal'
+        remote.name = 'ip-10-1-13-173'
+        remote.host = 'ip-10-1-13-173.us-west-1.compute.internal'
         remote.user = 'ec2-user'
         // remote.password = 'ec2-user'
         remote.allowAnyHosts = true
