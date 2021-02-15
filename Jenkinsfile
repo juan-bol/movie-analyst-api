@@ -23,9 +23,11 @@ pipeline {
             }
         }
         stage('Remote SSH') {
-            sshagent(['jenkins-key']) {
-            sh "ssh ec2-user@13.52.216.181 'pwd'"
-        }
+            steps {
+                sshagent(['jenkins-key']) {
+                    sh "ssh ec2-user@13.52.216.181 'pwd'"
+                } 
+            }
         }
     }
 }
