@@ -20,13 +20,14 @@ pipeline {
             steps {
                 sh 'docker run -v \$(pwd)/:/data --rm rampup npm pack'
                 sh 'ls -l'
+                sh 'whoami'
+
             }
         }
         stage('Remote SSH') {
             steps {
                 sshagent(['jenkins-key']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible --version'"
-                    sh 'whoami'
                 } 
             }
         }
