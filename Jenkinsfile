@@ -30,8 +30,8 @@ pipeline {
             }
         }
     }
-    
-    /* Cleanup workspace */
+
+    /* Cleanup workspace */ 
     post {
        always {
            deleteDir()
