@@ -25,7 +25,7 @@ pipeline {
         stage('Remote SSH') {
             steps {
                 sshagent(['jenkins-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 \'pwd\'"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible --version'"
                 } 
             }
         }
