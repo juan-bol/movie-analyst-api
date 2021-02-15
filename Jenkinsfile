@@ -1,11 +1,5 @@
 pipeline {
-    agent any 
-    def remote = [:]
-        remote.name = 'ip-10-1-13-173'
-        remote.host = 'ip-10-1-13-173.us-west-1.compute.internal'
-        remote.user = 'ec2-user'
-        // remote.password = 'ec2-user'
-        remote.allowAnyHosts = true
+    agent any
     stages {
         stage('Checkout SCM') {
             steps { 
@@ -29,8 +23,9 @@ pipeline {
             }
         }
         stage('Remote SSH') {
-            sshCommand remote: remote, command: "ls -lrt"
-            sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
+            sshagent(['jenkins-key']) {
+            sh "ssh ec2-user@13.52.216.181 'pwd'"
+        }
         }
     }
 }
