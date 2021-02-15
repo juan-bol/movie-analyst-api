@@ -26,6 +26,7 @@ pipeline {
             steps {
                 sshagent(['jenkins-key']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible --version'"
+                    sh 'whoami'
                 } 
             }
         }
