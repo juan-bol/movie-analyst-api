@@ -27,6 +27,8 @@ pipeline {
             steps {
                 sshagent(['jenkins-key']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible --version'"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible-playbook add-key.yml -i ansible_hosts --key-file ~/key-pair-JB.pem'"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.13.173 'ansible-playbook main.yml -i ansible_hosts'"
                 } 
             }
         }
