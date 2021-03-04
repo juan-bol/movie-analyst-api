@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Remote SSH') {
             steps {
-                sshagent(['jenkins-key']) {
+                sshagent(['jenkins-key']) { // ansible private ip 
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible --version'"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/add-key.yml -i ~/movie-ramp-up/ansible/ansible_hosts --key-file ~/key-pair-JB.pem'"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/main.yml -i ~/movie-ramp-up/ansible/ansible_hosts'"
