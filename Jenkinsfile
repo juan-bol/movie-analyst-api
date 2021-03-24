@@ -27,6 +27,7 @@ pipeline {
             steps {
                 sshagent(['jenkins-key']) { // ansible private ip 
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible --version'" 
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 '[[ ! -z "$AWS_ACCESS_KEY_ID" ]] && echo "Not empty" || echo "Empty"'"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/add-key.yml -i ~/movie-ramp-up/ansible/ec2.py -l tag_Name_Front_EC2_Terra_juan_bolanosr,tag_Name_Back_EC2_Terra_juan_bolanosr --key-file ~/key-pair-JB.pem --user ubuntu'"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/ui.yml -i ~/movie-ramp-up/ansible/ec2.py -l tag_Name_Front_EC2_Terra_juan_bolanosr --user ubuntu'"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/api.yml -i ~/movie-ramp-up/ansible/ec2.py -l tag_Name_Back_EC2_Terra_juan_bolanosr --user ubuntu'"
