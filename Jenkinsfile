@@ -25,8 +25,8 @@ pipeline {
         }
         stage('Remote SSH') {
             steps {
-                sshagent(['jenkins-key']) { // ansible private ip
-                    withAWS(credentials:'aws-key') {
+                withAWS(credentials:'aws-key') {
+                    sshagent(['jenkins-key']) { // ansible private ip
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible --version'" 
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 './testing.sh'"
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible-playbook ~/movie-ramp-up/ansible/add-key.yml -i ~/movie-ramp-up/ansible/ec2.py -l tag_Name_Front_EC2_Terra_juan_bolanosr,tag_Name_Back_EC2_Terra_juan_bolanosr --key-file ~/key-pair-JB.pem --user ubuntu'"
