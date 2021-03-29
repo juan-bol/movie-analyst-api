@@ -26,6 +26,7 @@ pipeline {
         stage('Remote SSH') {
             steps {
                 withAWS(credentials:'aws-key') {
+                    sh 'echo $AWS_ACCESS_KEY_ID'
                     sshagent(['jenkins-key']) { // ansible private ip
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible --version'" 
                         sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 './testing.sh'"
