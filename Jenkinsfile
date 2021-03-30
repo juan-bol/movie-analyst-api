@@ -28,7 +28,7 @@ pipeline {
                 withAWS(credentials:'aws-key') {
                     sh 'env'
                     sshagent(['jenkins-key']) { // ansible private ip
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 << EOF
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 /bin/bash << EOF
                                 ansible --version
                                 env
                             EOF" 
