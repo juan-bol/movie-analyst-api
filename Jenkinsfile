@@ -28,7 +28,9 @@ pipeline {
                 withAWS(credentials:'aws-key') {
                     sh 'env'
                     sshagent(['jenkins-key']) { // ansible private ip
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'bash -s' < provision.sh"
+                        // sh 'LC_AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
+                        // sh 'LC_AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
+                        sh "ssh -o StrictHostKeyChecking=no -o SendEnv=AWS_ACCESS_KEY_ID -o SendEnv=AWS_SECRET_ACCESS_KEY ec2-user@10.1.5.209 'bash -s' < provision.sh"
                         // sh "ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 'ansible --version'" 
                         // sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"' 
                         // sh 'ssh -o StrictHostKeyChecking=no ec2-user@10.1.5.209 "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"' 
